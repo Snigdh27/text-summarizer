@@ -102,7 +102,7 @@
 	 background: #313a3d;
 	 color: white;
 }
- form input[type="submit"] {
+ .button,form input[type="submit"] {
 	     background: #ddc85f;
     color: #353533;
     -webkit-appearance: none;
