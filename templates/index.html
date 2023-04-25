@@ -100,8 +100,9 @@
 		        <span class="ss-icon">check</span>
 	      </div>
 
-	      <input class="button" onclick="countPage()" type="submit" value="Summarize Now" />
+
   </form>
+         <button class="button" onclick="countPage()" value="Summarize Now" >Summarize Now<button/>
 </section>
 <!--</div>-->
 
@@ -113,12 +114,7 @@
 		<section id="hire1">
     <h1>SUMMARY</h1>
 <!--            <p class="glowIn" >A paragraph is a series of sentences that are organized and coherent, and are all related to a single topic. Almost every piece of writing you do that is longer than a few sentences should be organized into paragraphs.</p>-->
-            <p class="glowIn" >The automatic summarization of any text is the process of shortening a specific set of data to get the most important information.
-
-It is the process of creating a short summary of useful data by getting the main points written in the content.
-
-Our text summarizer uses advanced AI-based algorithms to analyze and summarize your content.
-It extracts the best appropriate sentences and generates the perfect summary of the given text.</p>
+            <p class="glowIn" id="inserttexthere" ></p>
         </section>
 <!--</div>-->
 
@@ -128,19 +124,21 @@ It extracts the best appropriate sentences and generates the perfect summary of 
 
 <script>
 
-<!--const countPage=()=>{-->
+const countPage=()=>{
+<!--console.log('Hi');-->
 <!--const inputTextPage=document.getElementById("hire);-->
 <!--const countPage=document.getElementById("hire1");-->
 
 <!--inputTextPage.style.display="none";-->
 <!--countPage.style.display="block";-->
 
-<!--let textOut=document.getElementById("display-user-text");-->
-<!--let textIn=document.getElementById("msg");-->
+let textOut=document.getElementById("inserttexthere");
+let textIn=document.getElementById("msg");
+console.log(textIn.value);
 
-<!--textOut.innerText=textIn;-->
+textOut.innerText=textIn.value;
 
-<!--}-->
+}
 
 var glowInTexts = document.querySelectorAll(".glowIn");
 glowInTexts.forEach(function (glowInText) {

@@ -100,9 +100,12 @@
 		<div class="white-panel">
 			<div class="login-show">
 				<h2>LOGIN</h2>
-				<input type="text" placeholder="Email">
-				<input type="password" placeholder="Password">
-                <a href="{{url_for('Index')}}"><input type="button" value="Login" ></a>
+                <form action="http:127.0.0.1:5000/result" method="POST">
+				<input type="email" id="login" name="email" placeholder="Email">
+				<input type="password" id="password" name="pass" placeholder="Password">
+                   <input type="button" value="Login" >
+                </form>
+<!--                <a href="{{url_for('Index')}}"><input type="button" value="Login" ></a>-->
 				<a href="">Forgot password?</a>
 			</div>
 			<div class="register-show">
