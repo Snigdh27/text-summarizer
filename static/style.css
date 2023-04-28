@@ -102,7 +102,7 @@
 	 background: #313a3d;
 	 color: white;
 }
- .button,form input[type="submit"] {
+ .button {
 	     background: #ddc85f;
     color: #353533;
     -webkit-appearance: none;
@@ -120,11 +120,11 @@
     -ms-transition: all 333ms ease-in-out;
     transition: all 333ms ease-in-out;
 }
- form input[type="submit"]:hover {
+ .button:hover {
 	 background: #313a3d;
 	 color: #ddc85f;
 }
- form input[type="submit"]:focus {
+ .button:focus {
 	 outline: none;
 	 background: #cd6302;
 }

@@ -82,7 +82,8 @@
         <a href="{{url_for('Profile')}}" class="nav-links">View Profile</a>
       </li>
       <li>
-        <button  class="nav-links custom-btn btn-16">Logout</button>
+          <!--                <a href="{{url_for('Index')}}"><input type="button" value="Login" ></a>-->
+          <a href="{{url_for('Home')}}"><button  class="nav-links custom-btn btn-16">Logout</button></a>
       </li>
 <!--      <li>-->
 <!--        <a href="#" class="nav-links">Blog</a>-->
@@ -93,17 +94,18 @@
 	<section id="hire">
     <h1>TEXT SUMMARIZER</h1>
 
-    <form name="myForm">
+    <form action="/analyze" method="POST" name="myForm">
 	      <div class="field msg-box" id="msg1">
               <textarea id="msg" name="name" value="Summary" rows="4" type="text" placeholder="Enter the text to summarize..."></textarea>
 		        <label for="msg">Text</label>
 		        <span class="ss-icon">check</span>
 	      </div>
 
+        <button class="button"  value="Summarize Now" >Summarize Now<button/>
 
-  </form>
-         <button class="button" onclick="countPage()" value="Summarize Now" >Summarize Now<button/>
-</section>
+    </form>
+<!--         <button class="button" onclick="countPage()" value="Summarize Now" >Summarize Now<button/>-->
+    </section>
 <!--</div>-->
 
 <!--	<div class="loader"></div>-->
@@ -114,7 +116,8 @@
 		<section id="hire1">
     <h1>SUMMARY</h1>
 <!--            <p class="glowIn" >A paragraph is a series of sentences that are organized and coherent, and are all related to a single topic. Almost every piece of writing you do that is longer than a few sentences should be organized into paragraphs.</p>-->
-            <p class="glowIn" id="inserttexthere" ></p>
+<!--            <p class="glowIn" id="inserttexthere" >{{summary}}</p>-->
+                        <p class="glowIn" id="inserttexthere" >{{summary}}</p>
         </section>
 <!--</div>-->
 
@@ -124,7 +127,7 @@
 
 <script>
 
-const countPage=()=>{
+<!--const countPage=()=>{-->
 <!--console.log('Hi');-->
 <!--const inputTextPage=document.getElementById("hire);-->
 <!--const countPage=document.getElementById("hire1");-->
@@ -132,15 +135,16 @@ const countPage=()=>{
 <!--inputTextPage.style.display="none";-->
 <!--countPage.style.display="block";-->
 
-let textOut=document.getElementById("inserttexthere");
-let textIn=document.getElementById("msg");
-console.log(textIn.value);
+<!--let textOut=document.getElementById("inserttexthere");-->
+<!--let textIn=document.getElementById("msg");-->
+<!--console.log(textIn.value);-->
 
-textOut.innerText=textIn.value;
+<!--textOut.innerText=textIn.value;-->
 
-}
+<!--}-->
 
-var glowInTexts = document.querySelectorAll(".glowIn");
+var glowInTexts = document.getElementById("inserttexthere");
+<!--var glowInTexts = document.querySelectorAll(".glowIn");-->
 glowInTexts.forEach(function (glowInText) {
   var letters = glowInText.textContent.split("");
   glowInText.textContent = "";

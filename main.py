@@ -1,22 +1,15 @@
-import pyrebase
 from flask import Flask, flash, redirect, render_template, request, session, abort, url_for
+from pymongo import MongoClient
+from text_summary import summarizer
+
 
 app = Flask(__name__)
+client = MongoClient('localhost', 27017)
 
-config = {
-  "apiKey": "AIzaSyDVWZjhGeHUpxc08PKN3LvLj2a3B9anDMA",
-  "authDomain": "minorproject2-c0d61.firebaseapp.com",
-  "projectId": "minorproject2-c0d61",
-  "storageBucket": "minorproject2-c0d61.appspot.com",
-  "messagingSenderId": "277081147302",
-  "appId": "1:277081147302:web:8855962fdcb87a3843b167",
-  "measurementId": "G-XQWSPMD8TQ",
-  "databaseURL": "https://minorproject2-c0d61-default-rtdb.firebaseio.com/"
-}
+db = client.text_sum
+sgnup = db.credentials
 
-firebase=pyrebase.initialize_app(config)
-auth=firebase.auth()
-db=firebase.database()
+
 
 person={"is_logged_in":False,"name":"","email":"","uid":""}
 
@@ -35,11 +28,44 @@ def Index():
     else:
         return redirect(url_for('Login'))
 
+@app.route('/signup', methods=('GET', 'POST'))
+def signup():
+    if request.method=='POST':
+        name = request.form['name']
+        email = request.form['email']
+        pwd = request.form['passwd']
+        mob=request.form['mob']
+        # print(name,email,pwd,mob)
+        sgnup.insert_one({'name':name, 'email':email, 'password':pwd,'mobile':mob})
+        session['username']
+    return render_template("index.html")
 
+@app.route('/signin', methods=('GET', 'POST'))
+def signin():
+    if request.method=='POST':
+        email = request.form['email']
+        pwd = request.form['pass']
+        # print(email,pwd)
+        userdata = sgnup.find({'email':email})
+        us=[user for user in userdata]
+        if(us[0]['password']==pwd):
+            return render_template("index.html")
+        else:
+            # print('invalid credentials')
+            return render_template("login.html")
+    return render_template("cover.html")
+
+@app.route('/analyze',methods=['GET','POST'])
+def analyze():
+    if request.method=='POST':
+        rawtext=request.form['name']
+        summary,original_txt,len_orig_txt,len_summary=summarizer(rawtext)
+
+    return render_template('index.html',summary=summary,original_txt=original_txt,len_orig_txt=len_orig_txt,len_summary=len_summary)
 
 @app.route('/profile')
 def Profile():
     return render_template('profile.html')
 
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=8080)
+    app.run()
