@@ -37,7 +37,7 @@ def signup():
         mob=request.form['mob']
         # print(name,email,pwd,mob)
         sgnup.insert_one({'name':name, 'email':email, 'password':pwd,'mobile':mob})
-        session['username']
+        # session['username']
     return render_template("index.html")
 
 @app.route('/signin', methods=('GET', 'POST'))
@@ -51,8 +51,9 @@ def signin():
         if(us[0]['password']==pwd):
             return render_template("index.html")
         else:
-            # print('invalid credentials')
-            return render_template("login.html")
+            print('invalid credentials')
+            flash("invalid credentials")
+            # return render_template("login.html")
     return render_template("cover.html")
 
 @app.route('/analyze',methods=['GET','POST'])
