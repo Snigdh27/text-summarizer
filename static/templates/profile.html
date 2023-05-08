@@ -8,9 +8,12 @@
 <link href="https://fonts.googleapis.com/css2?family=Comfortaa&display=swap" rel="stylesheet">
 <link href='https://fonts.googleapis.com/css?family=Lato:100,300,400,700,900,100italic,300italic,400italic,700italic,900italic' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="{{ url_for('static',filename='style.css')}}">
+        <link rel="stylesheet" href="{{ url_for('static',filename='profile.css')}}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link href="http://dev.see8ch.com/see8ch/v3/fonts/ss-social/ss-social.css" rel="stylesheet" />
 <link href="http://dev.see8ch.com/see8ch/v3/fonts/ss-standard/ss-standard.css" rel="stylesheet" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
 </head>
 
@@ -70,20 +73,19 @@
     <span class="navbar-toggle" id="js-navbar-toggle">
             <i class="fas fa-bars"></i>
         </span>
-    <a href="#" class="logo">News Summarizer</a>
+    <a href="#" class="logo">Text Summarizer</a>
     <ul class="main-nav" id="js-menu">
       <li>
         <a href="#" class="nav-links"></a>
       </li>
       <li>
-<!--        <a href="#" class="nav-links" style="color:white">Summarize</a>-->
+        <a href="{{url_for('Index')}}" class="nav-links" >Summarize</a>
       </li>
       <li>
-<!--        <a href="{{url_for('Profile')}}" class="nav-links">View Profile</a>-->
+        <a href="#" class="nav-links" style="color:white">View Profile</a>
       </li>
       <li>
-          <!--                <a href="{{url_for('Index')}}"><input type="button" value="Login" ></a>-->
-          <a href="{{url_for('Home')}}"><button  class="nav-links custom-btn btn-16">Logout</button></a>
+        <button  class="nav-links custom-btn btn-16">Logout</button>
       </li>
 <!--      <li>-->
 <!--        <a href="#" class="nav-links">Blog</a>-->
@@ -91,59 +93,45 @@
     </ul>
   </nav>
 
-	<section id="hire">
-    <h1>NEWS SUMMARIZER</h1>
-
-    <form action="/analyze" method="POST" name="myForm">
-	      <div class="field msg-box" id="msg1">
-              <textarea id="msg" name="name" value="Summary" rows="4" type="text" placeholder="Enter the news to summarize..."></textarea>
-		        <label for="msg">NEWS</label>
-		        <span class="ss-icon">check</span>
-	      </div>
-
-        <button class="button"  value="Summarize Now" >Summarize Now<button/>
-
-    </form>
-<!--         <button class="button" onclick="countPage()" value="Summarize Now" >Summarize Now<button/>-->
-    </section>
-<!--</div>-->
-
-<!--	<div class="loader"></div>-->
-<!--<div id="count-page">-->
 
 
+<div class="profile-pic">
+  <label class="-label" for="file">
+    <span class="glyphicon glyphicon-camera"></span>
+    <span style="font-size: 16px;">&#128247; Change Image</span>
+  </label>
+  <input id="file" type="file" onchange="loadFile(event)"/>
+  <img src="https://img.freepik.com/free-vector/illustration-businessman_53876-5856.jpg?w=740&t=st=1682238119~exp=1682238719~hmac=2fe67a3ed549c2aac8ca1ebe5866aec0abf06ecfcbaeab3e4280f6364169c8b7" id="output" width="200" />
 
-		<section id="hire1">
-    <h1>SUMMARY</h1>
-<!--            <p class="glowIn" >A paragraph is a series of sentences that are organized and coherent, and are all related to a single topic. Almost every piece of writing you do that is longer than a few sentences should be organized into paragraphs.</p>-->
-<!--            <p class="glowIn" id="inserttexthere" >{{summary}}</p>-->
-                        <p class="glowIn" id="inserttexthere" >{{summary}}</p>
-        </section>
-<!--</div>-->
+</div>
 
-
-
+<h1 class="user_name">Snigdh Kulshreshtha</h1><br>
+<h1 class="user_name1">Username : </h1>
+<h1 class="user_name1">Email : </h1>
+<h1 class="user_name1">Mobile Number : </h1>
 <br>
 
 <script>
 
+var loadFile = function (event) {
+  var image = document.getElementById("output");
+  image.src = URL.createObjectURL(event.target.files[0]);
+};
+
 <!--const countPage=()=>{-->
-<!--console.log('Hi');-->
 <!--const inputTextPage=document.getElementById("hire);-->
 <!--const countPage=document.getElementById("hire1");-->
 
 <!--inputTextPage.style.display="none";-->
 <!--countPage.style.display="block";-->
 
-<!--let textOut=document.getElementById("inserttexthere");-->
+<!--let textOut=document.getElementById("display-user-text");-->
 <!--let textIn=document.getElementById("msg");-->
-<!--console.log(textIn.value);-->
 
-<!--textOut.innerText=textIn.value;-->
+<!--textOut.innerText=textIn;-->
 
 <!--}-->
 
-var glowInTexts = document.getElementById("inserttexthere");
 var glowInTexts = document.querySelectorAll(".glowIn");
 glowInTexts.forEach(function (glowInText) {
   var letters = glowInText.textContent.split("");
